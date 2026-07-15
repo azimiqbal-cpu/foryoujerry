@@ -1247,6 +1247,59 @@
     });
   });
 
+  // Exhibit A: double-click / double-tap to like the poster image.
+  (function posterLikes(){
+    const frames = document.querySelectorAll('#exhibitA .poster-frame');
+
+    function burst(frame){
+      frame.querySelectorAll('.liquid-heart, .liquid-spark').forEach(el=>el.remove());
+      frame.classList.remove('liked');
+      void frame.offsetWidth;
+      frame.classList.add('liked');
+      window.dossierPulse?.([14, 30, 18]);
+
+      const heart = document.createElement('span');
+      heart.className = 'liquid-heart';
+      heart.setAttribute('aria-hidden', 'true');
+      heart.innerHTML = '<span class="shine"></span>';
+      frame.appendChild(heart);
+
+      for(let i = 1; i <= 4; i++){
+        const spark = document.createElement('span');
+        spark.className = `liquid-spark s${i}`;
+        spark.setAttribute('aria-hidden', 'true');
+        frame.appendChild(spark);
+      }
+
+      heart.addEventListener('animationend', ()=>{
+        heart.remove();
+        frame.querySelectorAll('.liquid-spark').forEach(el=>el.remove());
+        frame.classList.remove('liked');
+      }, { once: true });
+    }
+
+    frames.forEach(frame=>{
+      let lastTap = 0;
+
+      frame.addEventListener('dblclick', (event)=>{
+        event.preventDefault();
+        burst(frame);
+      });
+
+      frame.addEventListener('pointerup', (event)=>{
+        if(event.pointerType !== 'touch') return;
+        const now = Date.now();
+        if(now - lastTap > 70 && now - lastTap < 330){
+          event.preventDefault();
+          burst(frame);
+          lastTap = 0;
+          return;
+        }
+        lastTap = now;
+      });
+    });
+  })();
+
   // Device capability check — only phones/tablets/TVs with a real mouse or
   // trackpad get the cursor-follow effects. Touch and TV-remote navigation
   // fall back gracefully (no stuck cursor dots, no half-triggered tilts).
