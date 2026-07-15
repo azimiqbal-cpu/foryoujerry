@@ -505,6 +505,7 @@
     opacity: .8;
     position: relative;
     overflow: hidden;
+    touch-action: manipulation;
   }
   @media (max-width: 520px){
     .poster{
@@ -522,6 +523,93 @@
     content:"";
     position: absolute; inset:0;
     background: repeating-linear-gradient(115deg, transparent 0 18px, rgba(255,255,255,0.12) 18px 20px);
+  }
+  .poster-frame.liked{
+    animation: posterLikePulse .42s cubic-bezier(.2,.9,.3,1);
+  }
+  @keyframes posterLikePulse{
+    0%, 100%{ transform: scale(1); }
+    42%{ transform: scale(.985); }
+    72%{ transform: scale(1.018); }
+  }
+  .liquid-heart{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: min(108px, 34%);
+    aspect-ratio: 1;
+    z-index: 3;
+    pointer-events: none;
+    transform: translate(-50%, -50%) scale(.15) rotate(-45deg);
+    transform-origin: center;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.82), rgba(255,255,255,.24) 38%, rgba(217,140,140,.34) 100%);
+    border: 1px solid rgba(255,255,255,.72);
+    box-shadow:
+      inset 10px 10px 18px rgba(255,255,255,.42),
+      inset -12px -14px 22px rgba(168,54,44,.14),
+      0 18px 36px rgba(33,28,24,.22),
+      0 0 28px rgba(247,241,230,.34);
+    backdrop-filter: blur(9px) saturate(1.35);
+    -webkit-backdrop-filter: blur(9px) saturate(1.35);
+    animation: liquidHeartPop .95s cubic-bezier(.14,1.48,.32,1) forwards;
+  }
+  .liquid-heart::before,
+  .liquid-heart::after{
+    content:"";
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    border: inherit;
+    box-shadow: inherit;
+    backdrop-filter: inherit;
+    -webkit-backdrop-filter: inherit;
+  }
+  .liquid-heart::before{ top: -50%; left: 0; }
+  .liquid-heart::after{ left: 50%; top: 0; }
+  .liquid-heart .shine{
+    position: absolute;
+    inset: 18% 26% auto auto;
+    width: 24%;
+    height: 42%;
+    border-radius: 999px;
+    background: rgba(255,255,255,.58);
+    filter: blur(1px);
+    transform: rotate(18deg);
+    z-index: 2;
+  }
+  .liquid-spark{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(255,255,255,.7);
+    box-shadow: 0 0 16px rgba(217,140,140,.42);
+    transform: translate(-50%, -50%);
+    animation: liquidSpark .72s ease-out forwards;
+  }
+  .liquid-spark.s1{ --x:-74px; --y:-52px; animation-delay:.02s; }
+  .liquid-spark.s2{ --x:72px; --y:-44px; animation-delay:.05s; }
+  .liquid-spark.s3{ --x:-66px; --y:44px; animation-delay:.08s; }
+  .liquid-spark.s4{ --x:76px; --y:48px; animation-delay:.1s; }
+  @keyframes liquidHeartPop{
+    0%{ opacity: 0; transform: translate(-50%, -50%) scale(.15) rotate(-45deg); filter: blur(5px); }
+    18%{ opacity: 1; transform: translate(-50%, -50%) scale(1.12) rotate(-45deg); filter: blur(0); }
+    38%{ transform: translate(-50%, -50%) scale(.94) rotate(-45deg); }
+    58%{ opacity: .92; transform: translate(-50%, -50%) scale(1) rotate(-45deg); }
+    100%{ opacity: 0; transform: translate(-50%, -58%) scale(1.28) rotate(-45deg); }
+  }
+  @keyframes liquidSpark{
+    0%{ opacity: 0; transform: translate(-50%, -50%) scale(.4); }
+    22%{ opacity: 1; }
+    100%{ opacity: 0; transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(.1); }
   }
   .poster h3{
     font-size: 16px;
@@ -960,7 +1048,7 @@
       <circle cx="70" cy="70" r="52" fill="#A8362C"/>
       <circle cx="70" cy="70" r="52" fill="none" stroke="#F7F1E6" stroke-width="1" stroke-dasharray="1 4" opacity="0.5"/>
       <text x="70" y="62" text-anchor="middle" fill="#F7F1E6" font-family="Fraunces, serif" font-style="italic" font-size="15">Declassified</text>
-      <text x="70" y="82" text-anchor="middle" fill="#F7F1E6" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2">THIS FRIENDSHIP</text>
+      <text x="70" y="82" text-anchor="middle" fill="#F7F1E6" font-family="'Space Mono', monospace" font-size="9" letter-spacing="2">FRIENDSHIP</text>
     </svg>
   </div>
   <div class="scroll-hint"><span class="line"></span>SCROLL TO REVIEW FILE</div>
