@@ -7,14 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-  /* ============================================================
-     EDIT ME — quick reference for the person customizing this
-     1. Search "FRIEND_NAME" — replace every instance with her name.
-     2. Search "[PHOTO:" — each photo box is a placeholder.
-        Give it a real image via style="--img:url('photo.jpg')"
-     3. Search "EDIT COPY" — placeholder jokes/timeline/letter text.
-     ============================================================ */
-
   :root{
     --bg: #F7F1E6;
     --bg-warm: #F0E6D2;
@@ -44,8 +36,6 @@
     cursor: none;
     -webkit-text-size-adjust: 100%;
   }
-  /* fine pointer (mouse/trackpad) only gets the custom cursor + hover effects.
-     touch (phone/tablet) and TV remotes (coarse/no-hover) fall back to native cursor. */
   @media (hover: none), (pointer: coarse){
     body{ cursor: auto; }
     .cursor, .cursor-dot{ display: none; }
@@ -57,7 +47,6 @@
     *{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
   }
 
-  /* ---------- large screens / TV (10-foot UI) ---------- */
   @media (min-width: 1440px){
     .container{ max-width: 1180px; }
     body{ font-size: 18px; }
@@ -68,7 +57,6 @@
     .case-nav{ right: 40px; }
   }
 
-  /* keyboard / TV-remote focus visibility */
   a:focus-visible, .hoverable:focus-visible, .redact:focus-visible{
     outline: 2px solid var(--stamp);
     outline-offset: 4px;
@@ -93,10 +81,6 @@
     position: relative;
   }
 
-  /* ---------- persistent ambient background ----------
-     Runs continuously, low-key, behind all content. Sits at z-index -1 so
-     it shows through transparent/translucent sections but stays hidden
-     behind opaque cards, posters, and the dark finale panel. */
   .ambient-glow{
     position: fixed;
     inset: 0;
@@ -141,7 +125,6 @@
     .orb{ animation: none !important; }
   }
 
-  /* ---------- film grain overlay ---------- */
   .grain{
     position: fixed; inset: 0;
     pointer-events: none;
@@ -151,7 +134,6 @@
     mix-blend-mode: multiply;
   }
 
-  /* ---------- scroll progress ---------- */
   .progress{
     position: fixed; top:0; left:0; height: 3px;
     background: linear-gradient(90deg, var(--stamp), var(--gold));
@@ -160,7 +142,6 @@
     transition: width .1s linear;
   }
 
-  /* ---------- custom cursor ---------- */
   .cursor{
     position: fixed;
     width: 22px; height: 22px;
@@ -189,7 +170,6 @@
   }
   @media (hover: none){ .cursor, .cursor-dot{ display:none; } }
 
-  /* ---------- side case-tabs nav ---------- */
   .case-nav{
     position: fixed;
     right: 22px;
@@ -229,7 +209,6 @@
   }
   @media (max-width: 780px){ .case-nav{ display:none; } }
 
-  /* ---------- touch + mobile comfort layer ---------- */
   .tap-ripple{
     position: fixed;
     z-index: 450;
@@ -265,7 +244,6 @@
     #accessForm button:active{ transform: translateY(1px) scale(.99); }
   }
 
-  /* ---------- reveal on scroll ---------- */
   .reveal{
     opacity: 0;
     transform: translateY(28px);
@@ -276,7 +254,6 @@
   .reveal.d2.in{ transition-delay: .16s; }
   .reveal.d3.in{ transition-delay: .24s; }
 
-  /* ============ HERO ============ */
   .hero{
     min-height: 100vh;
     min-height: 100svh;
@@ -372,7 +349,6 @@
     opacity: .78;
   }
 
-  /* signature element: wax seal stamp */
   .seal-wrap{
     margin-top: 46px;
     transform: scale(0) rotate(-25deg);
@@ -403,7 +379,6 @@
   }
   @keyframes lineGrow{ 0%,100%{ transform: scaleY(.4); opacity:.3;} 50%{ transform: scaleY(1); opacity:1;} }
 
-  /* ============ SECTION HEADERS ============ */
   .exhibit-label{
     display: inline-flex;
     align-items: center;
@@ -455,7 +430,6 @@
     }
   }
 
-  /* ============ EXHIBIT A — NOW STREAMING (posters) ============ */
   .poster-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -625,7 +599,6 @@
     margin-top: 8px;
   }
 
-  /* ============ EXHIBIT B — TIMELINE (asymmetric) ============ */
   .timeline{ position: relative; }
   .timeline::before{
     content: "";
@@ -721,7 +694,6 @@
     .entry:nth-child(odd) .polaroid{ margin-left: 0; }
   }
 
-  /* ============ EXHIBIT C — COMMENDATIONS (wax seals) ============ */
   .badge-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
@@ -763,7 +735,6 @@
   }
   .badge p{ font-size: 13px; opacity: .75; line-height: 1.6; }
 
-  /* ============ EXHIBIT D — REDACTED FILE ============ */
   .redacted-box{
     background: rgba(255,255,255,0.4);
     backdrop-filter: blur(6px);
@@ -801,7 +772,6 @@
     opacity: .5;
   }
 
-  /* ============ FINALE ============ */
   .finale{
     min-height: 100vh;
     min-height: 100svh;
@@ -862,7 +832,6 @@
     background: var(--ink);
     color: var(--bg);
   }
-/* ---------- access gate ---------- */
 .access-gate{
   position: fixed;
   inset: 0;
@@ -989,11 +958,6 @@
 </style>
 </head>
 <body>
-<!-- ============================================================
-     ACCESS GATE — EDIT ME: change GATE_PASSWORD in the script
-     block below to your own code. This is a deterrent, not real
-     security — anyone viewing page source can find the password.
-     ============================================================ -->
 <div id="accessGate" class="access-gate">
   <div class="access-card">
     <div class="access-stamp">RESTRICTED</div>
@@ -1008,7 +972,6 @@
   </div>
 </div>
 
-<!-- persistent ambient background — runs the whole time the site is open -->
 <div class="ambient-glow" aria-hidden="true">
   <span class="orb o1"></span>
   <span class="orb o2"></span>
@@ -1030,7 +993,6 @@
   <a href="#finale" data-label="final"></a>
 </nav>
 
-<!-- ============ HERO / COVER PAGE ============ -->
 <section class="hero" id="hero">
   <div class="hero-tape t1"></div>
   <div class="hero-tape t2"></div>
@@ -1054,7 +1016,6 @@
   <div class="scroll-hint"><span class="line"></span>SCROLL TO REVIEW FILE</div>
 </section>
 
-<!-- ============ EXHIBIT A — NOW STREAMING ============ -->
 <section id="exhibitA">
   <div class="container reveal">
     <div class="exhibit-label">Exhibit A</div>
@@ -1062,7 +1023,6 @@
     <div class="poster-grid">
       <div class="poster hoverable" style="--r:-3deg">
         <div class="poster-frame" style="--img:url('images/1st img.JPG')"></div>
-        <!-- EDIT COPY -->
         <h3>"Gives Advice Like a Wise Elder, Overthinks Like a Toddler"</h3>
         <p>A Contradiction, Filmed</p>
       </div>
@@ -1082,7 +1042,6 @@
 
 <div class="container"><div class="divider"></div></div>
 
-<!-- ============ EXHIBIT B — THE ARCHIVE / TIMELINE ============ -->
 <section id="exhibitB">
   <div class="container reveal">
     <div class="exhibit-label">Exhibit B</div>
@@ -1090,7 +1049,6 @@
   </div>
   <div class="container">
     <div class="timeline">
-      <!-- EDIT COPY — replace dates/entries with real memories -->
       <div class="entry reveal">
         <div class="date">Entry 001 — Ongoing Observation</div>
         <h3>Subject: Currently Operating at Full Capacity</h3>
@@ -1118,7 +1076,6 @@
 
 <div class="container"><div class="divider"></div></div>
 
-<!-- ============ EXHIBIT C — COMMENDATIONS ============ -->
 <section id="exhibitC">
   <div class="container reveal">
     <div class="exhibit-label">Exhibit C</div>
@@ -1150,13 +1107,11 @@
 
 <div class="container"><div class="divider"></div></div>
 
-<!-- ============ EXHIBIT D — REDACTED FILE (interactive) ============ -->
 <section id="exhibitD">
   <div class="container reveal">
     <div class="exhibit-label">Exhibit D</div>
     <h2 class="section-title">Classified Notes (Click to Declassify)</h2>
     <div class="redacted-box">
-      <!-- EDIT COPY — click reveals text; swap the redacted phrases for real secrets/jokes -->
       Subject displays an unusual pattern of behavior known as
       <span class="redact hoverable" data-text="being too pure for this cruel world.">[REDACTED]</span>.
       Further review confirms she is also
@@ -1170,7 +1125,6 @@
   </div>
 </section>
 
-<!-- ============ FINALE — THE LETTER ============ -->
 <section class="finale" id="finale">
   <div class="spotlight" id="spotlight"></div>
   <canvas id="confetti"></canvas>
@@ -1178,7 +1132,6 @@
     <div class="exhibit-label">Final Exhibit</div>
     <h2 class="section-title" style="color:#fff;">The Letter They Tried to Keep Classified</h2>
     <p class="letter">
-      <!-- EDIT COPY — write the real message here -->
       Happy 22nd, <span class="to-edit">SAMEERA</span>. Every file in this
       archive is just an excuse to say what's actually true: I don't know what
       the last however-many years would've looked like without you in them,
@@ -1207,22 +1160,17 @@
 <footer>END OF FILE · CASE STATUS: CLOSED WITH LOTSSS OF HATTTEEE!</footer>
 
 <script>
-  // reveal-on-scroll
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
   }, { threshold: 0.15 });
   revealEls.forEach(el=>io.observe(el));
-
-  // scroll progress bar
   const progress = document.getElementById('progress');
   window.addEventListener('scroll', ()=>{
     const h = document.documentElement;
     const pct = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
     progress.style.width = pct + '%';
   });
-
-  // active dot in side nav
   const navLinks = document.querySelectorAll('#caseNav a');
   const sections = [...navLinks].map(a=>document.querySelector(a.getAttribute('href')));
   const navObserver = new IntersectionObserver((entries)=>{
@@ -1235,8 +1183,6 @@
     });
   }, { threshold: 0.5 });
   sections.forEach(s=>s && navObserver.observe(s));
-
-  // click-to-declassify redactions
   document.querySelectorAll('.redact').forEach(el=>{
     el.addEventListener('click', ()=>{
       if(!el.classList.contains('revealed')){
@@ -1246,8 +1192,6 @@
       }
     });
   });
-
-  // Exhibit A: double-click / double-tap to like the poster image.
   (function posterLikes(){
     const frames = document.querySelectorAll('#exhibitA .poster-frame');
 
@@ -1299,14 +1243,8 @@
       });
     });
   })();
-
-  // Device capability check — only phones/tablets/TVs with a real mouse or
-  // trackpad get the cursor-follow effects. Touch and TV-remote navigation
-  // fall back gracefully (no stuck cursor dots, no half-triggered tilts).
   const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // tactile touch feedback: works on supported mobile browsers and stays silent elsewhere.
   (function touchFeedback(){
     const interactiveSelector = 'a, button, input, .hoverable, .redact';
     let interactionPrimed = false;
@@ -1368,7 +1306,6 @@
   })();
 
   if(hasFinePointer && !prefersReducedMotion){
-    // custom cursor
     const cursor = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursorDot');
     window.addEventListener('mousemove', (e)=>{
@@ -1381,8 +1318,6 @@
       el.addEventListener('mouseenter', ()=>cursor.classList.add('big'));
       el.addEventListener('mouseleave', ()=>cursor.classList.remove('big'));
     });
-
-    // hero parallax tilt
     const heroTitle = document.getElementById('heroTitle');
     const hero = document.getElementById('hero');
     hero.addEventListener('mousemove', (e)=>{
@@ -1391,8 +1326,6 @@
       const y = (e.clientY - r.top)/r.height - 0.5;
       heroTitle.style.transform = `translate(${x*10}px, ${y*8}px)`;
     });
-
-    // finale spotlight follows cursor
     const finale2 = document.getElementById('finale');
     const spotlight = document.getElementById('spotlight');
     finale2.addEventListener('mousemove', (e)=>{
@@ -1402,13 +1335,6 @@
     });
   }
   const finale = document.getElementById('finale');
-
-  // ---------- persistent ambient dust motes ----------
-  // Runs continuously for as long as the page is open (a slow, quiet drift
-  // of light specks, like dust in a records-room window). Respects reduced
-  // motion, pauses when the tab is backgrounded, and scales its particle
-  // count down on small/low-power screens so it never competes for frames
-  // with the confetti or scroll effects.
   (function ambientDust(){
     const dustCanvas = document.getElementById('dust');
     const dctx = dustCanvas.getContext('2d');
@@ -1460,33 +1386,23 @@
     }
     dloop();
   })();
-
-  // confetti burst on finale — fires from BOTH bottom corners like party
-  // poppers, and keeps repeating on a loop for as long as the finale is
-  // on screen (resets and can fire again each time you scroll back to it)
   const canvas = document.getElementById('confetti');
   const ctx = canvas.getContext('2d');
   let particles = [];
   function resize(){ canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
   resize();
-  // debounced resize — avoids layout thrashing when mobile browser chrome
-  // (address bar) shows/hides during scroll, and on TV/monitor DPI changes
   let resizeTimer;
   window.addEventListener('resize', ()=>{
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(resize, 150);
   });
   window.addEventListener('orientationchange', ()=> setTimeout(resize, 200));
-
-  // fewer particles on small/low-power screens so mobile stays smooth
   const confettiCount = window.innerWidth < 480 ? 46 : (window.innerWidth < 900 ? 70 : 110);
   const gravity = 0.16;
 
   const colors = ['#D98C8C','#566B4E','#A8362C','#F7F1E6','#5B3A6E','#B8862E'];
 
   function spawnCorner(side){
-    // side: 'left' fires from the bottom-left corner up and out to the right;
-    // 'right' fires from the bottom-right corner up and out to the left.
     const originX = side === 'left' ? 0 : canvas.width;
     const baseAngle = side === 'left' ? -62 : -118; // degrees, 0 = pointing right, measured upward
     for(let i=0;i<confettiCount/2;i++){
@@ -1530,9 +1446,6 @@
     requestAnimationFrame(loop);
   }
   loop();
-
-  // repeats every few seconds while the finale is visible, stops (and
-  // resets) the moment you scroll away, so it fires fresh next visit
   let finaleInterval = null;
   const finaleObserver = new IntersectionObserver((entries)=>{
     entries.forEach(entry=>{
@@ -1551,7 +1464,7 @@
 </script>
 <script>
 (function accessGate(){
-  const GATE_PASSWORD = "MyselfJerry"; // <-- EDIT ME: set your access code here
+  const GATE_PASSWORD = "MyselfJerry";
   const STORAGE_KEY = "dossier_access_granted";
 
   const gate = document.getElementById('accessGate');
